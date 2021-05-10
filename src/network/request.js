@@ -17,6 +17,6 @@ export function request(config){
   }, err =>{
     console.log(err)
   })
-
-  return instance(config)  //返回的就是一个promise，所以没必要new一个promise
+//返回的就是一个promise，所以没必要new一个promise
+  return instance(config)
 }
