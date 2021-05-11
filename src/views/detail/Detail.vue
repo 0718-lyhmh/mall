@@ -30,7 +30,7 @@
   import {debounce} from "../../common/utils";
   import DetailBottomBar from "./childComs/DetailBottomBar";
   import BackTop from "../../components/common/backtop/BackTop";
-
+  import {mapActions} from 'vuex'
   export default {
     name: "Detail",
     components:{
@@ -93,6 +93,7 @@
       this.$bus.$off("itemImgLoad", this.imgListener);
     },
     methods:{
+      ...mapActions(['addCart']),
       imgLoad(){
         this.$refs.scroll.refresh();
         // 图片加载完获取classList
@@ -140,8 +141,9 @@
           price: this.goods.lowNowPrice,
           iid: this.iid
         };
-        this.$store.dispatch('addCart',obj)
-        console.log(this.$store.state.cartList)
+        this.addCart(obj).then(res => {
+          console.log("加入购物车成功")
+        })
       }
     }
   }
